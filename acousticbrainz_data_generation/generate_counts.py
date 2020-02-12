@@ -2,7 +2,7 @@ from pathlib import Path
 import json
 from tqdm import tqdm
 
-dataset = Path("E:/Datasets/acousticbrainz-highlevel-json-20150130/highlevel")
+dataset = Path("C:/Users/Chris/Documents/Thesis/datasets/acousticbrainz-highlevel-json-20150130/highlevel")
 recordings = {}
 
 d = list(dataset.glob("**/*.json"))
