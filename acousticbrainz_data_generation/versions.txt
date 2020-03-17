@@ -1,0 +1,1 @@
+v3 includes all metadata related to versions, v2 only the high-level versions.
