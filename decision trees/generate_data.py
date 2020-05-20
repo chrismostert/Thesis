@@ -1,43 +1,43 @@
-import pandas as pd
 from pathlib import Path
+import pandas as pd
 
-acousticbrainz = pd.read_hdf(Path.cwd() / '..' / 'datasets' / 'acousticbrainzV3.h5')
+# Load in the acousticbrainz dataset into the variable 'acousticbrainz'
+acousticbrainz = pd.read_hdf(Path.cwd().parents[0] / 'datasets' / 'acousticbrainzV3.h5')
 
+# Metadata to consider
+variables = ['analysis_sample_rate', 'bit_rate', 'codec', 'downmix', 'equal_loudness', 'length', 'lossless',
+			'replay_gain', 'essentia_high', 'extractor_high', 'gaia_high', 'essentia_low', 'essentia_git_sha_low',
+			'essentia_build_sha_low', 'extractor_low']
+
+## Define the spikes 
 # Spike in acousticness at 0.09 - 0.10
 acoust_spike = acousticbrainz[acousticbrainz[('mood_acoustic', 'acoustic')].between(0.09, 0.10, inclusive=True)]
-acoust_rest_low = acousticbrainz[acousticbrainz[('mood_acoustic', 'acoustic')].between(0.00, 0.09, inclusive=False)]
-acoust_rest_high = acousticbrainz[acousticbrainz[('mood_acoustic', 'acoustic')].between(0.10, 1.00, inclusive=False)]
-
-acoust_spike['label'] = 'anomaly'
-acoust_rest_low['label'] = 'non-anomaly'
-acoust_rest_high['label'] = 'non-anomaly'
-
-acoust_anomalies = pd.concat([acoust_spike, acoust_rest_low, acoust_rest_high])
-acoust_anomalies = acoust_anomalies[['codec', 'bit_rate', 'essentia_low', 'essentia_git_sha_low', 'essentia_build_sha_low', 'label']]
-acoust_anomalies.to_csv('acousticness_anomalies.csv')
 
 # Spike in mood relaxed at 0.805 - 0.815
 relaxed_spike = acousticbrainz[acousticbrainz[('mood_relaxed', 'relaxed')].between(0.805, 0.815, inclusive=True)]
-relaxed_spike_low = acousticbrainz[acousticbrainz[('mood_relaxed', 'relaxed')].between(0.00, 0.805, inclusive=False)]
-relaxed_spike_high = acousticbrainz[acousticbrainz[('mood_relaxed', 'relaxed')].between(0.815, 1.00, inclusive=False)]
-
-relaxed_spike['label'] = 'anomaly'
-relaxed_spike_low['label'] = 'non-anomaly'
-relaxed_spike_high['label'] = 'non-anomaly'
-
-relaxed_anomalies = pd.concat([relaxed_spike, relaxed_spike_low, relaxed_spike_high])
-relaxed_anomalies = relaxed_anomalies[['codec', 'bit_rate', 'essentia_low', 'essentia_git_sha_low', 'essentia_build_sha_low', 'label']]
-relaxed_anomalies.to_csv('relaxed_anomalies.csv')
 
 # Spike in mood electronic at 0.972 - 0.982
 electronic_spike = acousticbrainz[acousticbrainz[('mood_electronic', 'electronic')].between(0.972, 0.982, inclusive=True)]
-electronic_spike_low = acousticbrainz[acousticbrainz[('mood_electronic', 'electronic')].between(0.00, 0.972, inclusive=False)]
-electronic_spike_high = acousticbrainz[acousticbrainz[('mood_electronic', 'electronic')].between(0.982, 1.00, inclusive=False)]
 
-electronic_spike['label'] = 'anomaly'
-electronic_spike_low['label'] = 'non-anomaly'
-electronic_spike_high['label'] = 'non-anomaly'
+# Small spike in sad at 0.346 - 0.362
+sad_spike = acousticbrainz[acousticbrainz[('mood_sad', 'sad')].between(0.346, 0.362, inclusive=True)]
 
-electronic_anomalies = pd.concat([electronic_spike, electronic_spike_low, electronic_spike_high])
-electronic_anomalies = electronic_anomalies[['codec', 'bit_rate', 'essentia_low', 'essentia_git_sha_low', 'essentia_build_sha_low', 'label']]
-electronic_anomalies.to_csv('electronic_anomalies.csv')
+# Baseline contains all submission not in either of the three spikes
+spike_ids = set(acoust_spike.index).union(relaxed_spike.index, electronic_spike.index, sad_spike.index)
+nonspike_ids = set(acousticbrainz.index).difference(spike_ids)
+baseline = acousticbrainz.loc[list(nonspike_ids)]
+
+
+## Write datasets
+spike_names = ['acoust_spike', 'relaxed_spike', 'electronic_spike', 'sad_spike']
+spikes = [acoust_spike, relaxed_spike, electronic_spike, sad_spike]
+baseline['label'] = 'non-anomaly'
+
+for i in range(0, len(spikes)):
+	print(f"Labeling data for {spike_names[i]}...")
+	spike_data = spikes[i][variables].copy(deep=True)
+	spike_data['label'] = 'anomaly'
+	
+	out = spike_data.append(baseline[variables + ['label']])
+	out = out.reset_index(drop=True)
+	out.to_csv(spike_names[i] + '.csv', index=False)

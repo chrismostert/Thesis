@@ -1,0 +1,101 @@
+
+	 Conditional inference tree with 32 terminal nodes
+
+Response:  label 
+Inputs:  analysis_sample_rate, bit_rate, codec, downmix, equal_loudness, length, lossless, replay_gain, essentia_high, extractor_high, gaia_high, essentia_low, essentia_git_sha_low, essentia_build_sha_low, extractor_low 
+Number of observations:  1641033 
+
+1) essentia_build_sha_low == {053, 081, 0b3, 0ce, 0f8, 0fa, 11e, 123, 140, 170, 1a0, 1c3, 1dd, 27c, 283, 289, 330, 385, 396, 3a3, 3dc, 416, 456, 463, 4a0, 4e4, 56b, 590, 593, 5a0, 5dc, 5ff, 668, 6d7, 6ed, 71b, 732, 749, 74e, 776, 786, 7bc, 860, 86f, 8b5, 8d0, 93a, 9a4, 9bc, 9d4, a33, b28, b48, bba, c44, d3f, d8b, d9b, db9, e9a, ec1, ed4, f33, fac, fee}; criterion = 1, statistic = 873686.529
+  2) essentia_build_sha_low == {053, 0ce, 0f8, 0fa, 11e, 123, 140, 170, 1a0, 1c3, 1dd, 27c, 289, 330, 385, 396, 3a3, 3dc, 416, 456, 463, 4a0, 4e4, 56b, 590, 593, 5a0, 5dc, 5ff, 668, 6d7, 6ed, 71b, 732, 749, 74e, 776, 786, 7bc, 860, 86f, 8b5, 8d0, 93a, 9a4, 9bc, 9d4, a33, b28, b48, bba, c44, d3f, d8b, d9b, db9, e9a, ec1, ed4, f33, fac, fee}; criterion = 1, statistic = 40169.157
+    3) length <= 604; criterion = 1, statistic = 40001.297
+      4) essentia_build_sha_low == {0f8, 11e, 170, 1c3, 27c, 289, 3dc, 416, 4a0, 56b, 593, 5dc, 5ff, 6d7, 6ed, 71b, 732, 86f, 8b5, 8d0, 9d4, a33, b48, bba, c44, ec1, f33}; criterion = 1, statistic = 6957.032
+        5) codec == {aac, alac, flac, mpc8, vorbis}; criterion = 1, statistic = 2252.231
+          6)*  weights = 247733 
+        5) codec == {ape, mp1, mp2, mp3, mpc7, wmav2}
+          7)*  weights = 175054 
+      4) essentia_build_sha_low == {053, 0ce, 0fa, 123, 140, 1a0, 1dd, 330, 385, 396, 3a3, 463, 4e4, 590, 5a0, 668, 749, 74e, 776, 786, 7bc, 860, 93a, 9a4, b28, d3f, d8b, d9b, db9, e9a, ed4, fac, fee}
+        8) length <= 292.88; criterion = 1, statistic = 1174.941
+          9)*  weights = 577437 
+        8) length > 292.88
+          10)*  weights = 135136 
+    3) length > 604
+      11) length <= 773.4133; criterion = 1, statistic = 4409.74
+        12) essentia_build_sha_low == {170, 416, 4a0, 56b, 590, 593, 5ff, 6ed, 860, b28, c44, ec1}; criterion = 1, statistic = 230.814
+          13)*  weights = 2800 
+        12) essentia_build_sha_low == {053, 0ce, 123, 140, 1c3, 27c, 3a3, 4e4, 7bc, 93a, 9bc, d3f, ed4}
+          14)*  weights = 4672 
+      11) length > 773.4133
+        15) length <= 841.1467; criterion = 1, statistic = 155.196
+          16)*  weights = 353 
+        15) length > 841.1467
+          17)*  weights = 3653 
+  2) essentia_build_sha_low == {081, 0b3, 283}
+    18) codec == {aac, mp3, vorbis}; criterion = 1, statistic = 19100.67
+      19) bit_rate <= 157820; criterion = 1, statistic = 298.244
+        20) replay_gain <= -4.147949; criterion = 0.98, statistic = 10.255
+          21)*  weights = 366 
+        20) replay_gain > -4.147949
+          22)*  weights = 517 
+      19) bit_rate > 157820
+        23) codec == {aac, mp3}; criterion = 1, statistic = 558.509
+          24)*  weights = 5622 
+        23) codec == {vorbis}
+          25)*  weights = 154 
+    18) codec == {flac}
+      26) essentia_git_sha_low == {c77, fa4}; criterion = 1, statistic = 360.83
+        27) replay_gain <= -3.961378; criterion = 1, statistic = 434.833
+          28)*  weights = 14009 
+        27) replay_gain > -3.961378
+          29)*  weights = 490 
+      26) essentia_git_sha_low == {dc2}
+        30) replay_gain <= -10.04236; criterion = 1, statistic = 59.959
+          31)*  weights = 7061 
+        30) replay_gain > -10.04236
+          32)*  weights = 4867 
+1) essentia_build_sha_low == {011, 071, 0aa, 37a, 61d, 774, 80c, 85f, 901, 98d, 9b7, 9eb, a26, a62, b10, c5f, c93, cf5, ead, fb7}
+  33) codec == {aac, alac, mp2, mp3, mpc7, vorbis, wavpack, wmav2}; criterion = 1, statistic = 330814.145
+    34) essentia_build_sha_low == {011, 071, 0aa, 37a, 61d, 80c, 85f, 98d, 9eb, a26, a62, b10, c5f, c93, ead}; criterion = 1, statistic = 3168.576
+      35) length <= 91.48082; criterion = 1, statistic = 529.956
+        36) essentia_build_sha_low == {011, 071, 37a, 80c, 85f, 9eb, a26, a62, b10, ead}; criterion = 1, statistic = 174.605
+          37)*  weights = 2901 
+        36) essentia_build_sha_low == {0aa, 61d, c5f}
+          38)*  weights = 1641 
+      35) length > 91.48082
+        39) bit_rate <= 127831; criterion = 1, statistic = 341.472
+          40)*  weights = 5103 
+        39) bit_rate > 127831
+          41)*  weights = 89938 
+    34) essentia_build_sha_low == {774, 901, 9b7, cf5, fb7}
+      42) length <= 197.8002; criterion = 1, statistic = 1657.295
+        43) bit_rate <= 191744; criterion = 1, statistic = 630.436
+          44)*  weights = 29585 
+        43) bit_rate > 191744
+          45)*  weights = 46960 
+      42) length > 197.8002
+        46) bit_rate <= 110044; criterion = 1, statistic = 521.556
+          47)*  weights = 1654 
+        46) bit_rate > 110044
+          48)*  weights = 163577 
+  33) codec == {flac}
+    49) length <= 579.76; criterion = 1, statistic = 2530.366
+      50) essentia_build_sha_low == {0aa, 61d}; criterion = 1, statistic = 450.793
+        51) essentia_git_sha_low == {290, ba7}; criterion = 1, statistic = 37.604
+          52)*  weights = 5274 
+        51) essentia_git_sha_low == {28b, 6e8}
+          53)*  weights = 5224 
+      50) essentia_build_sha_low == {011, 071, 37a, 774, 80c, 85f, 901, 9b7, 9eb, a26, a62, b10, c5f, cf5}
+        54) length <= 318.6533; criterion = 1, statistic = 344.323
+          55)*  weights = 90913 
+        54) length > 318.6533
+          56)*  weights = 17138 
+    49) length > 579.76
+      57) length <= 772.0267; criterion = 1, statistic = 349.271
+        58) essentia_build_sha_low == {0aa, 901, 9b7, c5f, cf5}; criterion = 1, statistic = 45.435
+          59)*  weights = 640 
+        58) essentia_build_sha_low == {37a, 61d, 774, 85f, a26, b10}
+          60)*  weights = 174 
+      57) length > 772.0267
+        61) length <= 813.2534; criterion = 0.998, statistic = 15.063
+          62)*  weights = 25 
+        61) length > 813.2534
+          63)*  weights = 362 

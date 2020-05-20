@@ -2,7 +2,7 @@ import pandas as pd
 from pathlib import Path
 import hashlib
 
-files = list(Path.cwd().rglob('*_anomalies.csv'))
+files = list(Path.cwd().rglob('*.csv'))
 to_abbreviate = ['essentia_git_sha_low', 'essentia_build_sha_low']
 
 # essentia_git_sha_low and essentia_build_sha_low have very long fields
@@ -31,5 +31,5 @@ for file in files:
 		print(f"Shortened to {lim-1} characters")
 		df[col] = abbrev
 
-	df.to_csv(f"{file.stem}_abbrev.csv")
+	df.to_csv(f"{file.stem}.csv", index=False)
 

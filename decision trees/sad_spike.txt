@@ -1,0 +1,101 @@
+
+	 Conditional inference tree with 32 terminal nodes
+
+Response:  label 
+Inputs:  analysis_sample_rate, bit_rate, codec, downmix, equal_loudness, length, lossless, replay_gain, essentia_high, extractor_high, gaia_high, essentia_low, essentia_git_sha_low, essentia_build_sha_low, extractor_low 
+Number of observations:  1315570 
+
+1) length <= 616.3505; criterion = 1, statistic = 325600.64
+  2) length <= 459.3328; criterion = 1, statistic = 38399.255
+    3) essentia_build_sha_low == {011, 071, 901, 9b7, 9eb, a62, b10, c5f, c93, cf5, ead}; criterion = 1, statistic = 21897.232
+      4) codec == {aac, alac, mp3, vorbis, wmav2}; criterion = 1, statistic = 14409.068
+        5) length <= 225.1243; criterion = 1, statistic = 2784.449
+          6)*  weights = 12769 
+        5) length > 225.1243
+          7)*  weights = 7150 
+      4) codec == {flac}
+        8) length <= 343.7867; criterion = 1, statistic = 594.752
+          9)*  weights = 70246 
+        8) length > 343.7867
+          10)*  weights = 7375 
+    3) essentia_build_sha_low == {053, 081, 0aa, 0b3, 0ce, 0f8, 0fa, 11e, 123, 140, 170, 1a0, 1c3, 1dd, 27c, 283, 289, 330, 37a, 385, 396, 3a3, 416, 463, 4a0, 4e4, 56b, 590, 593, 5a0, 5dc, 5ff, 61d, 668, 6d7, 6ed, 732, 749, 74e, 774, 776, 786, 7bc, 80c, 85f, 860, 86f, 8b5, 8d0, 93a, 98d, 9a4, 9d4, a26, b28, b48, bba, c44, d3f, d8b, d9b, db9, e9a, ec1, ed4, f33, fac, fb7, fee}
+      11) length <= 349.36; criterion = 1, statistic = 6128.671
+        12) length <= 227.4467; criterion = 1, statistic = 1689.041
+          13)*  weights = 624024 
+        12) length > 227.4467
+          14)*  weights = 418095 
+      11) length > 349.36
+        15) essentia_build_sha_low == {123, 140, 5a0, 7bc, 85f, d3f}; criterion = 1, statistic = 400.046
+          16)*  weights = 5855 
+        15) essentia_build_sha_low == {053, 081, 0aa, 0b3, 0ce, 0f8, 0fa, 1a0, 1c3, 1dd, 27c, 283, 289, 37a, 416, 463, 4a0, 4e4, 56b, 590, 593, 5dc, 5ff, 61d, 6ed, 774, 776, 80c, 860, 8b5, 8d0, 93a, 98d, 9a4, 9d4, a26, b28, b48, bba, c44, d8b, d9b, e9a, ec1, ed4, f33, fac}
+          17)*  weights = 88174 
+  2) length > 459.3328
+    18) essentia_build_sha_low == {071, 0aa, 61d, 901, 9b7, 9eb, a62, b10, c5f}; criterion = 1, statistic = 4642.351
+      19) codec == {aac, alac, mp2, mp3, vorbis, wmav2}; criterion = 1, statistic = 2118.002
+        20) length <= 512.209; criterion = 1, statistic = 68.521
+          21)*  weights = 840 
+        20) length > 512.209
+          22)*  weights = 1690 
+      19) codec == {flac}
+        23) length <= 532.72; criterion = 1, statistic = 103.452
+          24)*  weights = 1645 
+        23) length > 532.72
+          25)*  weights = 909 
+    18) essentia_build_sha_low == {053, 081, 0b3, 0f8, 123, 140, 170, 1a0, 1c3, 27c, 283, 37a, 416, 4a0, 4e4, 56b, 590, 593, 5a0, 5ff, 6ed, 774, 7bc, 85f, 860, 8d0, 93a, 98d, 9a4, 9bc, a26, b28, b48, c44, cf5, d3f, d9b, ead, ec1, ed4, f33}
+      26) length <= 544.36; criterion = 1, statistic = 1153.681
+        27) essentia_build_sha_low == {140, 85f, d3f}; criterion = 1, statistic = 391.307
+          28)*  weights = 2199 
+        27) essentia_build_sha_low == {053, 081, 0b3, 0f8, 123, 170, 1a0, 1c3, 27c, 283, 37a, 416, 4a0, 4e4, 56b, 590, 593, 5a0, 5ff, 6ed, 774, 7bc, 860, 8d0, 93a, 98d, 9a4, a26, b28, b48, c44, cf5, d9b, ead, ec1, ed4, f33}
+          29)*  weights = 25090 
+      26) length > 544.36
+        30) replay_gain <= -7.428749; criterion = 1, statistic = 518.822
+          31)*  weights = 6384 
+        30) replay_gain > -7.428749
+          32)*  weights = 6459 
+1) length > 616.3505
+  33) length <= 707.5788; criterion = 1, statistic = 2617.009
+    34) essentia_build_sha_low == {071, 0aa, 170, 283, 416, 61d, 901, 9b7, 9eb, a62, b10, b48, c5f, ec1}; criterion = 1, statistic = 1293.138
+      35) codec == {flac}; criterion = 1, statistic = 602.451
+        36) length <= 672.0133; criterion = 0.997, statistic = 15.319
+          37)*  weights = 529 
+        36) length > 672.0133
+          38)*  weights = 228 
+      35) codec == {aac, alac, mp3, vorbis, wavpack, wmav2}
+        39) replay_gain <= -7.808475; criterion = 0.999, statistic = 19.186
+          40)*  weights = 318 
+        39) replay_gain > -7.808475
+          41)*  weights = 1381 
+    34) essentia_build_sha_low == {011, 053, 081, 0b3, 0ce, 123, 140, 1c3, 27c, 37a, 3a3, 4a0, 4e4, 56b, 590, 593, 5ff, 6ed, 774, 7bc, 85f, 860, 93a, a26, b28, c44, cf5, d3f, d9b, ead, ed4}
+      42) replay_gain <= -6.551554; criterion = 1, statistic = 416.135
+        43) length <= 673.5333; criterion = 1, statistic = 113.622
+          44)*  weights = 3507 
+        43) length > 673.5333
+          45)*  weights = 1442 
+      42) replay_gain > -6.551554
+        46) length <= 677.2797; criterion = 1, statistic = 211.365
+          47)*  weights = 3256 
+        46) length > 677.2797
+          48)*  weights = 1341 
+  33) length > 707.5788
+    49) length <= 746.7625; criterion = 1, statistic = 397.741
+      50) essentia_git_sha_low == {36b, 702, 7bc, 848, d72, eec}; criterion = 1, statistic = 143.094
+        51) lossless <= 0; criterion = 1, statistic = 66.049
+          52)*  weights = 627 
+        51) lossless > 0
+          53)*  weights = 152 
+      50) essentia_git_sha_low == {28b, 290, 345, 37f, 392, 6e8, 76c, ba7, d50, dc2, e73, fa4}
+        54) length <= 724.6266; criterion = 1, statistic = 22.407
+          55)*  weights = 1213 
+        54) length > 724.6266
+          56)*  weights = 1630 
+    49) length > 746.7625
+      57) length <= 798.511; criterion = 1, statistic = 134.913
+        58) lossless <= 0; criterion = 1, statistic = 45.334
+          59)*  weights = 1808 
+        58) lossless > 0
+          60)*  weights = 1810 
+      57) length > 798.511
+        61) length <= 841.1467; criterion = 1, statistic = 29.059
+          62)*  weights = 2271 
+        61) length > 841.1467
+          63)*  weights = 15153 
