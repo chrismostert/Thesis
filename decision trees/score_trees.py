@@ -22,24 +22,32 @@ for file in filelist:
 		# Dictionary to save the scores for this peak in
 		res = dict()
 		
+		# Get amount of levels
+		nolevels = 0
 		for node in nodes:
-			# Every two whitespaces are one level, level 5 is the highest level and has 0 whitespaces
-			# and will get a score of 5, level 4 has two whitespaces and will get a score of 4 etc...
-			# Since each node occurs twice, one for every split, divide the score by two
-			score = (5 - (len(node[0]) / 2)) / 2
+			level = (len(node[0]) / 2)+1
+			if level > nolevels:
+				nolevels = level
+
+		for node in nodes:
+			# Every two whitespaces are one level, the highest level has 0 whitespaces
+			# and will get a score of nolevels, the next level has two whitespaces and will get a score of nolevels-1 etc...
+			score = nolevels - (len(node[0]) / 2)
 			name = node[1]
 
-			# Add the scores
+			# Set the highest level we've seen for every node
 			if name in res:
-				res[name] += score
+				if score > res[name]:
+					res[name] = score
 			else:
 				res[name] = score
 
-		# And add to the main scores dictionary, sorted by score
+		# And add to the main scores dictionary
 		scores[file.stem] = res
 
-df = pd.DataFrame(scores).fillna(value=0).astype('int32').sort_values(
-	by='acoust_spike', ascending=False)
+df = pd.DataFrame(scores).fillna(value=0).astype('int32')
+df['total'] = df.sum(axis=1)
+df = df.sort_values(by='total', ascending=False)
 print(df)
 print()
 
