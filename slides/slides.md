@@ -50,12 +50,18 @@ Sharing commercial music audio is illegal
 Use *precomputed low-level features*
 MFCCs and chroma features are sensitive to *representation* [(Urbano et al., 2014)](http://mtg.upf.edu/node/3015)
 
+![bg right:20% fit](img/copyright.png)
+<!-- _footer: ![h:50px](img/TU-Delft-Logo.png) $~~~$[Image source](http://www.clker.com/clipart-11202.html)-->
+
 ---
 # *What* is the problem?
 
-Labels can be ambiguous
+Labels can be **ambiguous**
 
+![center w:500](img/pumpedupkicks.png)
 <!-- Use for example pumped up kicks for emotion, or the label 'party', which can be culturally dependent -->
+
+<!-- _footer: ![h:50px](img/TU-Delft-Logo.png) $~~~$Still taken from [Middle 8](https://youtu.be/LDFMmZ4IvX4)-->
 
 ---
 # *What* is the problem?
@@ -66,7 +72,7 @@ Which model to use?
 
 Be careful with interpretation
 
-![bg right fit](img/background/russellCircumplex.png)
+![bg right fit](img/background/russellCircumplex.PNG)
 <!-- _footer: ![h:50px](img/TU-Delft-Logo.png) $~~~$Image from [(Russell, 1980)](https://content.apa.org/doi/10.1037/h0077714)-->
 
 ---
@@ -74,6 +80,9 @@ Be careful with interpretation
 
 Trained classifiers are not explainable
 No good ways of validating
+
+![bg right fit](img/blackbox.png)
+<!-- _footer: ![h:50px](img/TU-Delft-Logo.png) $~~~$[Image source](https://blackboxofpm.com/the-black-box-of-product-management-3feb65db6ddb)-->
 
 ---
 # *Why* should we care?
@@ -84,10 +93,7 @@ No good ways of validating
 <!-- _footer: ![h:50px](img/TU-Delft-Logo.png) $~~~$Headlines all based on results by [(Interiano et al., 2018)](https://doi.org/10.1098/rsos.171274)-->
 
 ---
-<!-- _class: invert -->
-**Maybe add Hans here? Or not**
 
----
 # <!-- fit --> Then *how* are we going to measure classifier performance?
 
 ---
@@ -192,6 +198,11 @@ What about related constructs?
 ![center h:580](img/agreement/happy_notsad-v2.png)
 
 ---
+# Now we can at least control for the data!
+![center](img/codec-t-test.png)
+
+---
+
 # Going down the rabbit hole: can we gain further insight into what causes these strange distributions?
 
 ---
@@ -206,7 +217,7 @@ Main idea: compare metadata value distributions of data in peak with 'baseline'
 ---
 # Distance metric
 The Jensen-Shannon distance is used as a measure of distributional difference
-> The square root of the Jensen-Shannon Divergence [(Endres & Schindelin, 2003)]().
+> The square root of the Jensen-Shannon Divergence [(Endres & Schindelin, 2003)](https://doi.org/10.1109/TIT.2003.813506).
 > Symmetric, finite value within [0, 1] [(Lin, 1991)](https://doi.org/10.1109/18.61115).
 
 ---
@@ -238,9 +249,88 @@ Using the [AcousticBrainz genre dataset](http://mtg.upf.edu/node/3960) we can ch
 - Low-level extractor versions, codec or bitrate used seem to play a role in high-level classifier performance
 
 ---
-# Maybe the observed influence  to the differences in the underlying data?
+# Maybe the metadata effects are all due to the changes in underlying data?
 
-**TODO Ch6.1**
+- Agreement metric allowed for controlling the data
+- What about the stability metric?
 
 ---
-# Maybe all 
+# We can make the underlying data more homogeneous
+![center h:400px](img/top10.png)
+
+---
+# The same general patterns remain visible
+![bg left fit](img/beatles/beatlesbitrate-v2.png)
+![bg right:60% fit](img/beatles/beatlesdistribution.png)
+
+---
+# If we control for representation, how do the metrics change?
+![center h:370](img/stabilityimprovement.png)
+<!-- Selecting any combination seemed to benefit the stability -->
+
+---
+# What about agreement?
+![center h:310](img/agreementimprovement.png)
+
+---
+# Low-level extractor versions, codec or bitrate used seem to play a role in high-level classifier performance
+
+---
+# Where to go from here?
+![center h:600](img/futureresearch/Controlledcomparison.png)
+<!-- Collect large amount of CD quality audio, transform one of the representational differences at a time and do a proper controlled study. Was now impossible due to the dataset -->
+
+---
+# What about the software?
+- Each entry has a git-SHA
+- Use differences in output as **indicator**
+- Can then perform differential testing [(McKeeman, 1998)](https://www.semanticscholar.org/paper/Differential-Testing-for-Software-McKeeman/fc881e8d0432ea8e4dd5fda4979243cac5e4b9e3)
+
+<!-- Essentially show the same input to different versions of the system -->
+
+---
+# 'Stress testing' the trained classifier
+- No available oracle
+- *Metamorphic relation*: output should stay the same for imperceptible change in input
+![bg right fit](img/futureresearch/adversarial.png)
+<!-- _footer: ![h:50px](img/TU-Delft-Logo.png) $~~~$Image from [(Gong & Poellabauer, 2018)](http://arxiv.org/abs/1803.09156)-->
+
+---
+# How can we find such perturbations?
+![center h:500](img/futureresearch/GA.png)
+
+---
+# In conclusion
+- Current high-level classifiers should be used with caution
+- Stop optimizing, start evaluating
+- Not just relevant for MIR
+
+---
+![bg auto](img/conclusion/CleverHans.jpg)
+
+---
+#### Bibliography
+###### Bogdanov, D., Porter, A., Schreiber, H., Urbano, J., & Oramas, S. (2019). The AcousticBrainz genre dataset: Multi-source, multi-level, multi-label, and large-scale. Proceedings of the 20th Conference of the International Society for Music Information Retrieval (ISMIR 2019): 2019 Nov 4-8; Delft, The Netherlands.[Canada]: ISMIR; 2019.
+
+###### Endres, D. M., & Schindelin, J. E. (2003). A new metric for probability distributions. IEEE Transactions on Information Theory, 49(7), 1858–1860. https://doi.org/10.1109/TIT.2003.813506
+
+###### Gong, Y., & Poellabauer, C. (2018). An Overview of Vulnerabilities of Voice Controlled Systems. arXiv:1803.09156 [cs]. http://arxiv.org/abs/1803.09156
+
+###### Interiano, M., Kazemi, K., Wang, L., Yang, J., Yu, Z., & Komarova, N. L. (2018). Musical trends and predictability of success in contemporary songs in and out of the top charts. Royal Society Open Science, 5(5), 171274. https://doi.org/10.1098/rsos.171274
+
+---
+###### Lin, J. (1991). Divergence measures based on the Shannon entropy. IEEE Transactions on Information Theory, 37(1), 145–151. https://doi.org/10.1109/18.61115
+
+###### McKeeman, W. M. (1998). Differential testing for software. Digital Technical Journal, 10(1), 100–107.
+
+###### Park, M., Thom, J., Mennicken, S., Cramer, H., & Macy, M. (2019). Global music streaming data reveal diurnal and seasonal patterns of affective preference. Nature Human Behaviour, 3(3), 230–236. https://doi.org/10.1038/s41562-018-0508-z
+
+###### Porter, A., Bogdanov, D., Kaye, R., Tsukanov, R., & Serra, X. (2015). AcousticBrainz: A Community Platform for Gathering Music Information Obtained from Audio. ISMIR.
+
+---
+
+###### Russell, J. A. (1980). A circumplex model of affect. Journal of personality and social psychology, 39(6), 1161.
+
+###### Urbano, J., Bogdanov, D., Boyer, H., Gómez Gutiérrez, E., & Serra, X. (2014). What is the effect of audio quality on the robustness of MFCCs and chroma features? Proceedings of the 15th Conference of the International Society for Music Information Retrieval (ISMIR 2014); 2014 Oct 27-31; Taipei, Taiwan. International Society for Music Information Retrieval; 2014. p. 573-578.
+
+###### Vigliensoni, G., & Fujinaga, I. (2017). The Music Listening Histories Dataset. ISMIR.
