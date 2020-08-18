@@ -277,7 +277,7 @@ The Jensen-Shannon distance is used as a measure of distributional difference
 ---
 # What have we learned?
 - There are reasons to doubt high-level classifier performance from a theoretical point of view
-- Stability, agreement and distributional anlyses highlight several classifiers that seem to perform poorly and show unexpected patterns
+- Stability, agreement and distributional analyses highlight several classifiers that seem to perform poorly and show unexpected patterns
 - Low-level extractor versions, codec or bitrate used seem to play a role in high-level classifier performance
 
 ---
